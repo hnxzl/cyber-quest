@@ -14,57 +14,57 @@ const PresentasiPage: React.FC = () => {
         "Email palsu dari 'bank' yang meminta update data rekening",
         "WhatsApp dari nomor asing mengaku customer service e-commerce",
         "Website palsu yang meniru tampilan situs resmi",
-        "SMS mengaku dari operator seluler meminta konfirmasi data"
+        "SMS mengaku dari operator seluler meminta konfirmasi data",
       ],
       prevention: [
         "Selalu cek URL website dengan teliti sebelum login",
         "Jangan klik link dari pesan yang mencurigakan",
         "Verifikasi langsung ke customer service resmi jika ragu",
-        "Aktifkan autentikasi dua faktor (2FA) di akun penting"
-      ]
+        "Aktifkan autentikasi dua faktor (2FA) di akun penting",
+      ],
     },
     social_engineering: {
       examples: [
         "Telepon mengaku IT support meminta password untuk 'maintenance'",
         "Orang asing di kantor bertanya password WiFi sambil pura-pura bingung",
         "Chat mengaku teman meminjam uang dalam keadaan darurat",
-        "Email mengaku atasan meminta transfer dana untuk keperluan mendesak"
+        "Email mengaku atasan meminta transfer dana untuk keperluan mendesak",
       ],
       prevention: [
         "Selalu verifikasi identitas orang yang meminta informasi sensitif",
         "Jangan memberikan password atau PIN melalui telepon/chat",
         "Gunakan protokol verifikasi berlapis untuk hal-hal penting",
-        "Edukasi diri tentang teknik-teknik social engineering"
-      ]
+        "Edukasi diri tentang teknik-teknik social engineering",
+      ],
     },
     ransomware: {
       examples: [
         "File dokumen berubah ekstensi menjadi .encrypted dan tidak bisa dibuka",
         "Layar komputer menampilkan pesan meminta bitcoin untuk unlock file",
         "Email dengan attachment yang mengandung ransomware",
-        "Website yang ter-compromise mendownload ransomware otomatis"
+        "Website yang ter-compromise mendownload ransomware otomatis",
       ],
       prevention: [
         "Backup data secara rutin ke storage terpisah (offline)",
         "Update sistem operasi dan software secara berkala",
         "Gunakan antivirus yang terpercaya dengan real-time protection",
-        "Hindari membuka attachment email dari pengirim tidak dikenal"
-      ]
+        "Hindari membuka attachment email dari pengirim tidak dikenal",
+      ],
     },
     password: {
       examples: [
         "Password seperti '123456', 'password', 'qwerty'",
         "Menggunakan nama, tanggal lahir, atau nama hewan peliharaan",
         "Password yang sama untuk semua akun",
-        "Password tanpa kombinasi huruf besar-kecil-angka-simbol"
+        "Password tanpa kombinasi huruf besar-kecil-angka-simbol",
       ],
       prevention: [
         "Buat password minimal 12 karakter dengan kombinasi kompleks",
         "Gunakan password manager untuk menyimpan password unik",
         "Aktifkan autentikasi dua faktor (2FA) di semua akun penting",
-        "Ganti password secara berkala, terutama setelah insiden keamanan"
-      ]
-    }
+        "Ganti password secara berkala, terutama setelah insiden keamanan",
+      ],
+    },
   };
 
   // Data detail untuk tips praktis
@@ -74,53 +74,53 @@ const PresentasiPage: React.FC = () => {
         "Gunakan minimal 12 karakter (semakin panjang semakin baik)",
         "Kombinasikan huruf besar, huruf kecil, angka, dan simbol",
         "Hindari kata yang ada di kamus atau informasi pribadi",
-        "Buat password unik untuk setiap akun penting"
+        "Buat password unik untuk setiap akun penting",
       ],
       tools: [
         "Password Manager: Bitwarden, LastPass, 1Password",
         "2FA Apps: Google Authenticator, Authy",
-        "Checker keamanan: HaveIBeenPwned untuk cek kebocoran data"
-      ]
+        "Checker keamanan: HaveIBeenPwned untuk cek kebocoran data",
+      ],
     },
     safe_browsing: {
       steps: [
         "Selalu periksa URL sebelum memasukkan data sensitif",
         "Cari ikon gembok (🔒) di address bar untuk situs HTTPS",
         "Jangan download software dari situs yang tidak terpercaya",
-        "Log out dari akun penting setelah selesai digunakan"
+        "Log out dari akun penting setelah selesai digunakan",
       ],
       tools: [
         "Extensions: uBlock Origin, HTTPS Everywhere",
         "DNS: Cloudflare (1.1.1.1) untuk filter malware",
-        "VPN terpercaya jika menggunakan WiFi public"
-      ]
+        "VPN terpercaya jika menggunakan WiFi public",
+      ],
     },
     social_media: {
       steps: [
         "Set profile ke private, jangan public untuk semua orang",
         "Review dan hapus informasi pribadi yang tidak perlu",
         "Periksa app permissions yang terhubung ke akun media sosial",
-        "Jangan posting lokasi real-time atau info pribadi sensitif"
+        "Jangan posting lokasi real-time atau info pribadi sensitif",
       ],
       tools: [
         "Privacy settings di setiap platform (Instagram, Facebook, TikTok)",
         "2FA untuk semua akun media sosial",
-        "Location services: matikan sharing lokasi otomatis"
-      ]
+        "Location services: matikan sharing lokasi otomatis",
+      ],
     },
     device_security: {
       steps: [
         "Aktifkan screen lock (PIN, pattern, biometrics) di semua device",
         "Install aplikasi hanya dari official store (Play Store/App Store)",
         "Update sistem operasi dan aplikasi secara rutin",
-        "Backup data penting secara berkala"
+        "Backup data penting secara berkala",
       ],
       tools: [
         "Antivirus mobile: Malwarebytes, Bitdefender (jika perlu)",
         "Backup: Google Drive, iCloud, atau external storage",
-        "Find My Device: Google Find My Device, Apple Find My"
-      ]
-    }
+        "Find My Device: Google Find My Device, Apple Find My",
+      ],
+    },
   };
 
   const slides = [
@@ -262,15 +262,22 @@ const PresentasiPage: React.FC = () => {
             4 Ancaman Digital Utama ⚔️
           </h1>
           <p className="text-lg text-gray-600 mb-8">
-            💡 <strong>Klik pada setiap card</strong> untuk melihat contoh dan cara pencegahan!
+            💡 <strong>Klik pada setiap card</strong> untuk melihat contoh dan
+            cara pencegahan!
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
             {/* Phishing Card */}
             <div
-              onClick={() => setSelectedThreat(selectedThreat === 'phishing' ? null : 'phishing')}
+              onClick={() =>
+                setSelectedThreat(
+                  selectedThreat === "phishing" ? null : "phishing"
+                )
+              }
               className={`bg-red-50 rounded-2xl p-6 border-2 border-red-200 hover:shadow-lg transition-all cursor-pointer ${
-                selectedThreat === 'phishing' ? 'ring-2 ring-red-400 border-red-400' : ''
+                selectedThreat === "phishing"
+                  ? "ring-2 ring-red-400 border-red-400"
+                  : ""
               }`}
             >
               <div className="text-5xl mb-3">🎣</div>
@@ -278,11 +285,13 @@ const PresentasiPage: React.FC = () => {
               <p className="text-red-600 text-sm mb-3">
                 Penipuan dengan link/pesan palsu untuk mencuri data pribadi
               </p>
-              
-              {selectedThreat === 'phishing' && (
+
+              {selectedThreat === "phishing" && (
                 <div className="mt-4 space-y-3 text-left">
                   <div>
-                    <h4 className="font-semibold text-red-700 mb-2">⚠️ Contoh Serangan:</h4>
+                    <h4 className="font-semibold text-red-700 mb-2">
+                      ⚠️ Contoh Serangan:
+                    </h4>
                     <ul className="text-xs text-red-600 space-y-1">
                       {threatDetails.phishing.examples.map((example, idx) => (
                         <li key={idx} className="flex items-start">
@@ -293,31 +302,45 @@ const PresentasiPage: React.FC = () => {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-red-700 mb-2">🛡️ Cara Pencegahan:</h4>
+                    <h4 className="font-semibold text-red-700 mb-2">
+                      🛡️ Cara Pencegahan:
+                    </h4>
                     <ul className="text-xs text-red-600 space-y-1">
-                      {threatDetails.phishing.prevention.map((prevention, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <span className="text-green-500 mr-1">✓</span>
-                          <span>{prevention}</span>
-                        </li>
-                      ))}
+                      {threatDetails.phishing.prevention.map(
+                        (prevention, idx) => (
+                          <li key={idx} className="flex items-start">
+                            <span className="text-green-500 mr-1">✓</span>
+                            <span>{prevention}</span>
+                          </li>
+                        )
+                      )}
                     </ul>
                   </div>
                 </div>
               )}
-              
+
               <div className="mt-3 text-right">
                 <span className="text-xs text-red-500">
-                  {selectedThreat === 'phishing' ? "▲ Tutup detail" : "▼ Lihat detail"}
+                  {selectedThreat === "phishing"
+                    ? "▲ Tutup detail"
+                    : "▼ Lihat detail"}
                 </span>
               </div>
             </div>
 
             {/* Social Engineering Card */}
             <div
-              onClick={() => setSelectedThreat(selectedThreat === 'social_engineering' ? null : 'social_engineering')}
+              onClick={() =>
+                setSelectedThreat(
+                  selectedThreat === "social_engineering"
+                    ? null
+                    : "social_engineering"
+                )
+              }
               className={`bg-orange-50 rounded-2xl p-6 border-2 border-orange-200 hover:shadow-lg transition-all cursor-pointer ${
-                selectedThreat === 'social_engineering' ? 'ring-2 ring-orange-400 border-orange-400' : ''
+                selectedThreat === "social_engineering"
+                  ? "ring-2 ring-orange-400 border-orange-400"
+                  : ""
               }`}
             >
               <div className="text-5xl mb-3">🕵️</div>
@@ -327,46 +350,62 @@ const PresentasiPage: React.FC = () => {
               <p className="text-orange-600 text-sm mb-3">
                 Manipulasi psikologis untuk mendapatkan informasi rahasia
               </p>
-              
-              {selectedThreat === 'social_engineering' && (
+
+              {selectedThreat === "social_engineering" && (
                 <div className="mt-4 space-y-3 text-left">
                   <div>
-                    <h4 className="font-semibold text-orange-700 mb-2">⚠️ Contoh Serangan:</h4>
+                    <h4 className="font-semibold text-orange-700 mb-2">
+                      ⚠️ Contoh Serangan:
+                    </h4>
                     <ul className="text-xs text-orange-600 space-y-1">
-                      {threatDetails.social_engineering.examples.map((example, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <span className="mr-1">•</span>
-                          <span>{example}</span>
-                        </li>
-                      ))}
+                      {threatDetails.social_engineering.examples.map(
+                        (example, idx) => (
+                          <li key={idx} className="flex items-start">
+                            <span className="mr-1">•</span>
+                            <span>{example}</span>
+                          </li>
+                        )
+                      )}
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-orange-700 mb-2">🛡️ Cara Pencegahan:</h4>
+                    <h4 className="font-semibold text-orange-700 mb-2">
+                      🛡️ Cara Pencegahan:
+                    </h4>
                     <ul className="text-xs text-orange-600 space-y-1">
-                      {threatDetails.social_engineering.prevention.map((prevention, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <span className="text-green-500 mr-1">✓</span>
-                          <span>{prevention}</span>
-                        </li>
-                      ))}
+                      {threatDetails.social_engineering.prevention.map(
+                        (prevention, idx) => (
+                          <li key={idx} className="flex items-start">
+                            <span className="text-green-500 mr-1">✓</span>
+                            <span>{prevention}</span>
+                          </li>
+                        )
+                      )}
                     </ul>
                   </div>
                 </div>
               )}
-              
+
               <div className="mt-3 text-right">
                 <span className="text-xs text-orange-500">
-                  {selectedThreat === 'social_engineering' ? "▲ Tutup detail" : "▼ Lihat detail"}
+                  {selectedThreat === "social_engineering"
+                    ? "▲ Tutup detail"
+                    : "▼ Lihat detail"}
                 </span>
               </div>
             </div>
 
             {/* Ransomware Card */}
             <div
-              onClick={() => setSelectedThreat(selectedThreat === 'ransomware' ? null : 'ransomware')}
+              onClick={() =>
+                setSelectedThreat(
+                  selectedThreat === "ransomware" ? null : "ransomware"
+                )
+              }
               className={`bg-purple-50 rounded-2xl p-6 border-2 border-purple-200 hover:shadow-lg transition-all cursor-pointer ${
-                selectedThreat === 'ransomware' ? 'ring-2 ring-purple-400 border-purple-400' : ''
+                selectedThreat === "ransomware"
+                  ? "ring-2 ring-purple-400 border-purple-400"
+                  : ""
               }`}
             >
               <div className="text-5xl mb-3">🔒</div>
@@ -376,11 +415,13 @@ const PresentasiPage: React.FC = () => {
               <p className="text-purple-600 text-sm mb-3">
                 Malware yang mengunci file dan meminta tebusan
               </p>
-              
-              {selectedThreat === 'ransomware' && (
+
+              {selectedThreat === "ransomware" && (
                 <div className="mt-4 space-y-3 text-left">
                   <div>
-                    <h4 className="font-semibold text-purple-700 mb-2">⚠️ Contoh Serangan:</h4>
+                    <h4 className="font-semibold text-purple-700 mb-2">
+                      ⚠️ Contoh Serangan:
+                    </h4>
                     <ul className="text-xs text-purple-600 space-y-1">
                       {threatDetails.ransomware.examples.map((example, idx) => (
                         <li key={idx} className="flex items-start">
@@ -391,31 +432,43 @@ const PresentasiPage: React.FC = () => {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-purple-700 mb-2">🛡️ Cara Pencegahan:</h4>
+                    <h4 className="font-semibold text-purple-700 mb-2">
+                      🛡️ Cara Pencegahan:
+                    </h4>
                     <ul className="text-xs text-purple-600 space-y-1">
-                      {threatDetails.ransomware.prevention.map((prevention, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <span className="text-green-500 mr-1">✓</span>
-                          <span>{prevention}</span>
-                        </li>
-                      ))}
+                      {threatDetails.ransomware.prevention.map(
+                        (prevention, idx) => (
+                          <li key={idx} className="flex items-start">
+                            <span className="text-green-500 mr-1">✓</span>
+                            <span>{prevention}</span>
+                          </li>
+                        )
+                      )}
                     </ul>
                   </div>
                 </div>
               )}
-              
+
               <div className="mt-3 text-right">
                 <span className="text-xs text-purple-500">
-                  {selectedThreat === 'ransomware' ? "▲ Tutup detail" : "▼ Lihat detail"}
+                  {selectedThreat === "ransomware"
+                    ? "▲ Tutup detail"
+                    : "▼ Lihat detail"}
                 </span>
               </div>
             </div>
 
             {/* Password Lemah Card */}
             <div
-              onClick={() => setSelectedThreat(selectedThreat === 'password' ? null : 'password')}
+              onClick={() =>
+                setSelectedThreat(
+                  selectedThreat === "password" ? null : "password"
+                )
+              }
               className={`bg-yellow-50 rounded-2xl p-6 border-2 border-yellow-200 hover:shadow-lg transition-all cursor-pointer ${
-                selectedThreat === 'password' ? 'ring-2 ring-yellow-400 border-yellow-400' : ''
+                selectedThreat === "password"
+                  ? "ring-2 ring-yellow-400 border-yellow-400"
+                  : ""
               }`}
             >
               <div className="text-5xl mb-3">🔑</div>
@@ -425,11 +478,13 @@ const PresentasiPage: React.FC = () => {
               <p className="text-yellow-600 text-sm mb-3">
                 Password mudah ditebak seperti tanggal lahir atau 123456
               </p>
-              
-              {selectedThreat === 'password' && (
+
+              {selectedThreat === "password" && (
                 <div className="mt-4 space-y-3 text-left">
                   <div>
-                    <h4 className="font-semibold text-yellow-700 mb-2">⚠️ Contoh Password Lemah:</h4>
+                    <h4 className="font-semibold text-yellow-700 mb-2">
+                      ⚠️ Contoh Password Lemah:
+                    </h4>
                     <ul className="text-xs text-yellow-600 space-y-1">
                       {threatDetails.password.examples.map((example, idx) => (
                         <li key={idx} className="flex items-start">
@@ -440,22 +495,28 @@ const PresentasiPage: React.FC = () => {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-yellow-700 mb-2">🛡️ Cara Membuat Password Kuat:</h4>
+                    <h4 className="font-semibold text-yellow-700 mb-2">
+                      🛡️ Cara Membuat Password Kuat:
+                    </h4>
                     <ul className="text-xs text-yellow-600 space-y-1">
-                      {threatDetails.password.prevention.map((prevention, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <span className="text-green-500 mr-1">✓</span>
-                          <span>{prevention}</span>
-                        </li>
-                      ))}
+                      {threatDetails.password.prevention.map(
+                        (prevention, idx) => (
+                          <li key={idx} className="flex items-start">
+                            <span className="text-green-500 mr-1">✓</span>
+                            <span>{prevention}</span>
+                          </li>
+                        )
+                      )}
                     </ul>
                   </div>
                 </div>
               )}
-              
+
               <div className="mt-3 text-right">
                 <span className="text-xs text-yellow-500">
-                  {selectedThreat === 'password' ? "▲ Tutup detail" : "▼ Lihat detail"}
+                  {selectedThreat === "password"
+                    ? "▲ Tutup detail"
+                    : "▼ Lihat detail"}
                 </span>
               </div>
             </div>
@@ -849,15 +910,22 @@ const PresentasiPage: React.FC = () => {
             Tips Praktis Keamanan Digital 💡
           </h1>
           <p className="text-lg text-gray-600 mb-8">
-            💡 <strong>Klik pada setiap card</strong> untuk melihat langkah detail dan tools yang bisa digunakan!
+            💡 <strong>Klik pada setiap card</strong> untuk melihat langkah
+            detail dan tools yang bisa digunakan!
           </p>
 
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
             {/* Password Kuat */}
             <div
-              onClick={() => setSelectedTip(selectedTip === 'strong_passwords' ? null : 'strong_passwords')}
+              onClick={() =>
+                setSelectedTip(
+                  selectedTip === "strong_passwords" ? null : "strong_passwords"
+                )
+              }
               className={`bg-green-50 rounded-2xl p-6 border-2 border-green-200 hover:shadow-lg transition-all cursor-pointer ${
-                selectedTip === 'strong_passwords' ? 'ring-2 ring-green-400 border-green-400' : ''
+                selectedTip === "strong_passwords"
+                  ? "ring-2 ring-green-400 border-green-400"
+                  : ""
               }`}
             >
               <div className="text-4xl mb-3">🔑</div>
@@ -874,22 +942,28 @@ const PresentasiPage: React.FC = () => {
                   <span>Campur huruf besar & kecil</span>
                 </div>
               </div>
-              
-              {selectedTip === 'strong_passwords' && (
+
+              {selectedTip === "strong_passwords" && (
                 <div className="mt-4 space-y-3 text-left">
                   <div>
-                    <h4 className="font-semibold text-green-700 mb-2">📝 Langkah Detail:</h4>
+                    <h4 className="font-semibold text-green-700 mb-2">
+                      📝 Langkah Detail:
+                    </h4>
                     <ul className="text-xs text-green-600 space-y-1">
                       {tipDetails.strong_passwords.steps.map((step, idx) => (
                         <li key={idx} className="flex items-start">
-                          <span className="text-green-500 mr-1">{idx + 1}.</span>
+                          <span className="text-green-500 mr-1">
+                            {idx + 1}.
+                          </span>
                           <span>{step}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-green-700 mb-2">🔧 Tools & Aplikasi:</h4>
+                    <h4 className="font-semibold text-green-700 mb-2">
+                      🔧 Tools & Aplikasi:
+                    </h4>
                     <ul className="text-xs text-green-600 space-y-1">
                       {tipDetails.strong_passwords.tools.map((tool, idx) => (
                         <li key={idx} className="flex items-start">
@@ -901,19 +975,27 @@ const PresentasiPage: React.FC = () => {
                   </div>
                 </div>
               )}
-              
+
               <div className="mt-3 text-right">
                 <span className="text-xs text-green-500">
-                  {selectedTip === 'strong_passwords' ? "▲ Tutup detail" : "▼ Lihat detail"}
+                  {selectedTip === "strong_passwords"
+                    ? "▲ Tutup detail"
+                    : "▼ Lihat detail"}
                 </span>
               </div>
             </div>
 
             {/* Safe Browsing */}
             <div
-              onClick={() => setSelectedTip(selectedTip === 'safe_browsing' ? null : 'safe_browsing')}
+              onClick={() =>
+                setSelectedTip(
+                  selectedTip === "safe_browsing" ? null : "safe_browsing"
+                )
+              }
               className={`bg-blue-50 rounded-2xl p-6 border-2 border-blue-200 hover:shadow-lg transition-all cursor-pointer ${
-                selectedTip === 'safe_browsing' ? 'ring-2 ring-blue-400 border-blue-400' : ''
+                selectedTip === "safe_browsing"
+                  ? "ring-2 ring-blue-400 border-blue-400"
+                  : ""
               }`}
             >
               <div className="text-4xl mb-3">🌐</div>
@@ -930,11 +1012,13 @@ const PresentasiPage: React.FC = () => {
                   <span>Periksa URL dengan teliti</span>
                 </div>
               </div>
-              
-              {selectedTip === 'safe_browsing' && (
+
+              {selectedTip === "safe_browsing" && (
                 <div className="mt-4 space-y-3 text-left">
                   <div>
-                    <h4 className="font-semibold text-blue-700 mb-2">📝 Langkah Detail:</h4>
+                    <h4 className="font-semibold text-blue-700 mb-2">
+                      📝 Langkah Detail:
+                    </h4>
                     <ul className="text-xs text-blue-600 space-y-1">
                       {tipDetails.safe_browsing.steps.map((step, idx) => (
                         <li key={idx} className="flex items-start">
@@ -945,7 +1029,9 @@ const PresentasiPage: React.FC = () => {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-blue-700 mb-2">🔧 Tools & Aplikasi:</h4>
+                    <h4 className="font-semibold text-blue-700 mb-2">
+                      🔧 Tools & Aplikasi:
+                    </h4>
                     <ul className="text-xs text-blue-600 space-y-1">
                       {tipDetails.safe_browsing.tools.map((tool, idx) => (
                         <li key={idx} className="flex items-start">
@@ -957,19 +1043,27 @@ const PresentasiPage: React.FC = () => {
                   </div>
                 </div>
               )}
-              
+
               <div className="mt-3 text-right">
                 <span className="text-xs text-blue-500">
-                  {selectedTip === 'safe_browsing' ? "▲ Tutup detail" : "▼ Lihat detail"}
+                  {selectedTip === "safe_browsing"
+                    ? "▲ Tutup detail"
+                    : "▼ Lihat detail"}
                 </span>
               </div>
             </div>
 
             {/* Social Media Privacy */}
             <div
-              onClick={() => setSelectedTip(selectedTip === 'social_media' ? null : 'social_media')}
+              onClick={() =>
+                setSelectedTip(
+                  selectedTip === "social_media" ? null : "social_media"
+                )
+              }
               className={`bg-pink-50 rounded-2xl p-6 border-2 border-pink-200 hover:shadow-lg transition-all cursor-pointer ${
-                selectedTip === 'social_media' ? 'ring-2 ring-pink-400 border-pink-400' : ''
+                selectedTip === "social_media"
+                  ? "ring-2 ring-pink-400 border-pink-400"
+                  : ""
               }`}
             >
               <div className="text-4xl mb-3">�</div>
@@ -986,11 +1080,13 @@ const PresentasiPage: React.FC = () => {
                   <span>Jangan posting lokasi real-time</span>
                 </div>
               </div>
-              
-              {selectedTip === 'social_media' && (
+
+              {selectedTip === "social_media" && (
                 <div className="mt-4 space-y-3 text-left">
                   <div>
-                    <h4 className="font-semibold text-pink-700 mb-2">📝 Langkah Detail:</h4>
+                    <h4 className="font-semibold text-pink-700 mb-2">
+                      📝 Langkah Detail:
+                    </h4>
                     <ul className="text-xs text-pink-600 space-y-1">
                       {tipDetails.social_media.steps.map((step, idx) => (
                         <li key={idx} className="flex items-start">
@@ -1001,7 +1097,9 @@ const PresentasiPage: React.FC = () => {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-pink-700 mb-2">🔧 Tools & Aplikasi:</h4>
+                    <h4 className="font-semibold text-pink-700 mb-2">
+                      🔧 Tools & Aplikasi:
+                    </h4>
                     <ul className="text-xs text-pink-600 space-y-1">
                       {tipDetails.social_media.tools.map((tool, idx) => (
                         <li key={idx} className="flex items-start">
@@ -1013,19 +1111,27 @@ const PresentasiPage: React.FC = () => {
                   </div>
                 </div>
               )}
-              
+
               <div className="mt-3 text-right">
                 <span className="text-xs text-pink-500">
-                  {selectedTip === 'social_media' ? "▲ Tutup detail" : "▼ Lihat detail"}
+                  {selectedTip === "social_media"
+                    ? "▲ Tutup detail"
+                    : "▼ Lihat detail"}
                 </span>
               </div>
             </div>
 
             {/* Device Security */}
             <div
-              onClick={() => setSelectedTip(selectedTip === 'device_security' ? null : 'device_security')}
+              onClick={() =>
+                setSelectedTip(
+                  selectedTip === "device_security" ? null : "device_security"
+                )
+              }
               className={`bg-teal-50 rounded-2xl p-6 border-2 border-teal-200 hover:shadow-lg transition-all cursor-pointer ${
-                selectedTip === 'device_security' ? 'ring-2 ring-teal-400 border-teal-400' : ''
+                selectedTip === "device_security"
+                  ? "ring-2 ring-teal-400 border-teal-400"
+                  : ""
               }`}
             >
               <div className="text-4xl mb-3">📲</div>
@@ -1042,11 +1148,13 @@ const PresentasiPage: React.FC = () => {
                   <span>Update OS dan aplikasi rutin</span>
                 </div>
               </div>
-              
-              {selectedTip === 'device_security' && (
+
+              {selectedTip === "device_security" && (
                 <div className="mt-4 space-y-3 text-left">
                   <div>
-                    <h4 className="font-semibold text-teal-700 mb-2">📝 Langkah Detail:</h4>
+                    <h4 className="font-semibold text-teal-700 mb-2">
+                      📝 Langkah Detail:
+                    </h4>
                     <ul className="text-xs text-teal-600 space-y-1">
                       {tipDetails.device_security.steps.map((step, idx) => (
                         <li key={idx} className="flex items-start">
@@ -1057,7 +1165,9 @@ const PresentasiPage: React.FC = () => {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-teal-700 mb-2">🔧 Tools & Aplikasi:</h4>
+                    <h4 className="font-semibold text-teal-700 mb-2">
+                      🔧 Tools & Aplikasi:
+                    </h4>
                     <ul className="text-xs text-teal-600 space-y-1">
                       {tipDetails.device_security.tools.map((tool, idx) => (
                         <li key={idx} className="flex items-start">
@@ -1069,10 +1179,12 @@ const PresentasiPage: React.FC = () => {
                   </div>
                 </div>
               )}
-              
+
               <div className="mt-3 text-right">
                 <span className="text-xs text-teal-500">
-                  {selectedTip === 'device_security' ? "▲ Tutup detail" : "▼ Lihat detail"}
+                  {selectedTip === "device_security"
+                    ? "▲ Tutup detail"
+                    : "▼ Lihat detail"}
                 </span>
               </div>
             </div>

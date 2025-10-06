@@ -179,27 +179,36 @@ const LandingPage: React.FC = () => {
             <span className="text-3xl ml-3">🛡️</span>
           </h3>
           <p className="text-green-700 text-center mb-6">
-            Sebelum ikut survey, yuk pelajari dulu tentang 4 ancaman digital utama dan tips keamanannya! 
-            Semua dijelaskan dengan detail dan interaktif.
+            Sebelum ikut survey, yuk pelajari dulu tentang 4 ancaman digital
+            utama dan tips keamanannya! Semua dijelaskan dengan detail dan
+            interaktif.
           </p>
-          
+
           <div className="grid md:grid-cols-2 gap-4 mb-6">
             <div className="bg-white/70 rounded-xl p-4 border border-green-300">
               <div className="flex items-center mb-2">
                 <span className="text-2xl mr-3">🎣</span>
-                <span className="font-semibold text-gray-800">Phishing & Social Engineering</span>
+                <span className="font-semibold text-gray-800">
+                  Phishing & Social Engineering
+                </span>
               </div>
-              <p className="text-sm text-gray-600">Pelajari cara mengenali dan menghindari penipuan digital</p>
+              <p className="text-sm text-gray-600">
+                Pelajari cara mengenali dan menghindari penipuan digital
+              </p>
             </div>
             <div className="bg-white/70 rounded-xl p-4 border border-green-300">
               <div className="flex items-center mb-2">
                 <span className="text-2xl mr-3">🔒</span>
-                <span className="font-semibold text-gray-800">Ransomware & Password</span>
+                <span className="font-semibold text-gray-800">
+                  Ransomware & Password
+                </span>
               </div>
-              <p className="text-sm text-gray-600">Tips melindungi file dan membuat password yang kuat</p>
+              <p className="text-sm text-gray-600">
+                Tips melindungi file dan membuat password yang kuat
+              </p>
             </div>
           </div>
-          
+
           <div className="text-center">
             <button
               onClick={() => router.push("/education")}

@@ -20,11 +20,11 @@ const EducationPage: React.FC = () => {
                 <span>Kembali ke Beranda</span>
               </button>
             </div>
-            
+
             <h1 className="text-2xl font-bold text-gray-800">
               Edukasi Keamanan Digital
             </h1>
-            
+
             <div className="flex space-x-3">
               <button
                 onClick={() => router.push("/pretest")}
@@ -50,23 +50,32 @@ const EducationPage: React.FC = () => {
             🎓 Pusat Pembelajaran Keamanan Digital
           </h2>
           <p className="text-gray-600 leading-relaxed">
-            Selamat datang di pusat edukasi keamanan digital SMAN 1 Katapang! 
-            Di sini Anda akan mempelajari tentang ancaman-ancaman digital yang paling umum 
-            serta tips praktis untuk melindungi diri Anda di dunia maya.
+            Selamat datang di pusat edukasi keamanan digital SMAN 1 Katapang! Di
+            sini Anda akan mempelajari tentang ancaman-ancaman digital yang
+            paling umum serta tips praktis untuk melindungi diri Anda di dunia
+            maya.
           </p>
-          
+
           <div className="grid md:grid-cols-3 gap-4 mt-6 text-sm">
             <div className="bg-blue-50 p-4 rounded-lg">
               <span className="text-blue-600 font-semibold">📚 Pelajari</span>
-              <p className="text-gray-600 mt-1">4 ancaman digital utama yang harus diwaspadai</p>
+              <p className="text-gray-600 mt-1">
+                4 ancaman digital utama yang harus diwaspadai
+              </p>
             </div>
             <div className="bg-green-50 p-4 rounded-lg">
               <span className="text-green-600 font-semibold">🛡️ Terapkan</span>
-              <p className="text-gray-600 mt-1">Tips praktis keamanan sehari-hari</p>
+              <p className="text-gray-600 mt-1">
+                Tips praktis keamanan sehari-hari
+              </p>
             </div>
             <div className="bg-purple-50 p-4 rounded-lg">
-              <span className="text-purple-600 font-semibold">🎯 Praktikkan</span>
-              <p className="text-gray-600 mt-1">Uji pemahaman melalui game dan kuis</p>
+              <span className="text-purple-600 font-semibold">
+                🎯 Praktikkan
+              </span>
+              <p className="text-gray-600 mt-1">
+                Uji pemahaman melalui game dan kuis
+              </p>
             </div>
           </div>
         </div>
@@ -80,10 +89,12 @@ const EducationPage: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4 py-6">
           <div className="text-center">
             <p className="text-gray-600 text-sm mb-2">
-              📧 Punya pertanyaan? Hubungi: <strong>cyber@sman1katapang.sch.id</strong>
+              📧 Punya pertanyaan? Hubungi:{" "}
+              <strong>cyber@sman1katapang.sch.id</strong>
             </p>
             <p className="text-gray-500 text-xs">
-              Penelitian Skripsi - Keamanan Digital untuk Siswa SMA | SMAN 1 Katapang 2024
+              Penelitian Skripsi - Keamanan Digital untuk Siswa SMA | SMAN 1
+              Katapang 2024
             </p>
           </div>
         </div>
