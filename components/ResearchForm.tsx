@@ -6,7 +6,7 @@ interface FormData {
   class: string;
   gender: string;
   internet_hours: string;
-  favorite_platform: string;
+  favorite_platform: string[]; // Changed to array for multiple selection
   received_suspicious: boolean | null;
   q_phishing: string;
   q_otp_request: string;
@@ -25,7 +25,7 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
     class: "",
     gender: "",
     internet_hours: "",
-    favorite_platform: "",
+    favorite_platform: [], // Changed to empty array
     received_suspicious: null,
     q_phishing: "",
     q_otp_request: "",
@@ -46,7 +46,7 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
 
   const sections = [
     {
-      title: "Identitas (Opsional)",
+      title: "Identitas",
       fields: ["student_name", "class", "gender"],
     },
     {
@@ -72,37 +72,31 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
 
   const questions = {
     student_name: {
-      label: "Nama (opsional, bisa tulis inisial saja)",
+      label: "Nama (bisa tulis inisial saja)",
       type: "text",
+      required: true,
       placeholder: "Contoh: A.B atau Anonymous",
     },
     class: {
-      label: "Kelas",
-      type: "select",
-      options: [
-        "X IPA 1",
-        "X IPA 2",
-        "X IPS 1",
-        "X IPS 2",
-        "XI IPA 1",
-        "XI IPA 2",
-        "XI IPS 1",
-        "XI IPS 2",
-      ],
+      label: "Kelas (contoh: x ipa 1, XI ips 2)",
+      type: "text",
+      required: true,
+      placeholder: "Ketik kelas kamu, misal: x ipa 1 atau xi ips 2",
     },
     gender: {
-      label: "Jenis kelamin (opsional)",
+      label: "Jenis kelamin",
       type: "radio",
+      required: true,
       options: [
         { value: "male", label: "Laki-laki" },
         { value: "female", label: "Perempuan" },
-        { value: "skip", label: "Tidak ingin menjawab" },
       ],
     },
     internet_hours: {
       label:
         "Berapa lama rata-rata waktu kamu menggunakan internet/hp dalam sehari?",
       type: "radio",
+      required: true,
       options: [
         { value: "<2", label: "< 2 jam" },
         { value: "2-5", label: "2–5 jam" },
@@ -111,13 +105,19 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
       ],
     },
     favorite_platform: {
-      label: "Media sosial apa yang paling sering kamu gunakan?",
-      type: "radio",
+      label:
+        "Media sosial/platform apa yang sering kamu gunakan? (bisa pilih lebih dari 1)",
+      type: "checkbox",
+      required: true,
       options: [
         { value: "WhatsApp", label: "WhatsApp" },
         { value: "Instagram", label: "Instagram" },
         { value: "TikTok", label: "TikTok" },
         { value: "Facebook", label: "Facebook" },
+        { value: "YouTube", label: "YouTube" },
+        { value: "Twitter/X", label: "Twitter/X" },
+        { value: "Discord", label: "Discord" },
+        { value: "Telegram", label: "Telegram" },
         { value: "Lainnya", label: "Lainnya" },
       ],
     },
@@ -125,6 +125,7 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
       label:
         "Pernahkah kamu menerima pesan/link mencurigakan (misalnya undangan hadiah, minta OTP, dll)?",
       type: "boolean",
+      required: true,
       options: [
         { value: true, label: "Ya" },
         { value: false, label: "Tidak" },
@@ -133,6 +134,7 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
     q_phishing: {
       label: "Apa yang dimaksud dengan phishing?",
       type: "radio",
+      required: true,
       options: [
         { value: "virus", label: "Virus komputer yang merusak data" },
         {
@@ -148,6 +150,7 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
       label:
         "Jika kamu mendapatkan pesan WhatsApp dari nomor asing yang meminta kode OTP, apa yang sebaiknya dilakukan?",
       type: "radio",
+      required: true,
       options: [
         { value: "beri_otp", label: "Memberikan kode OTP agar cepat selesai" },
         {
@@ -162,6 +165,7 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
     q_password_strong: {
       label: "Password yang kuat biasanya memiliki ciri:",
       type: "radio",
+      required: true,
       options: [
         {
           value: "nama_tgl",
@@ -180,6 +184,7 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
       label:
         "Jika sebuah aplikasi meminta akses penuh ke galeri, kontak, dan mikrofon padahal tidak relevan, apa tindakan yang benar?",
       type: "radio",
+      required: true,
       options: [
         {
           value: "beri_semua",
@@ -194,6 +199,7 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
     q_social_engineering: {
       label: "Apa yang dimaksud dengan social engineering?",
       type: "radio",
+      required: true,
       options: [
         {
           value: "metode_komputer",
@@ -212,6 +218,7 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
     q_ransomware: {
       label: "Ransomware adalah...",
       type: "radio",
+      required: true,
       options: [
         { value: "game", label: "Game RPG terkenal" },
         {
@@ -227,6 +234,7 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
       label:
         "Apakah kamu merasa khawatir data pribadi (foto, akun medsos) bisa dipakai orang lain?",
       type: "boolean",
+      required: true,
       options: [
         { value: true, label: "Ya" },
         { value: false, label: "Tidak" },
@@ -236,6 +244,7 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
       label:
         "Jika kamu mendapatkan link undian berhadiah dari teman, apa yang akan kamu lakukan?",
       type: "radio",
+      required: true,
       options: [
         { value: "klik_langsung", label: "Klik langsung link tersebut" },
         { value: "tanya_dulu", label: "Tanya dulu ke teman/guru sebelum klik" },
@@ -246,11 +255,94 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
     },
   };
 
+  // Helper function to format class name
+  const formatClassName = (input: string): string => {
+    if (!input) return input;
+
+    // Convert to uppercase and clean up
+    let formatted = input.toLowerCase().trim();
+
+    // Replace common patterns
+    formatted = formatted
+      .replace(/\b(x|10)\b/gi, "X")
+      .replace(/\b(xi|11)\b/gi, "XI")
+      .replace(/\b(xii|12)\b/gi, "XII")
+      .replace(/\bipa\b/gi, "IPA")
+      .replace(/\bips\b/gi, "IPS");
+
+    // Handle spacing
+    formatted = formatted.replace(/\s+/g, " ").trim();
+
+    return formatted;
+  };
+
+  // Helper function to handle checkbox selection
+  const handleCheckboxChange = (
+    field: string,
+    value: string,
+    checked: boolean
+  ) => {
+    setFormData((prev) => {
+      const currentArray = prev[field as keyof FormData] as string[];
+      if (checked) {
+        // Add if not already present
+        if (!currentArray.includes(value)) {
+          return { ...prev, [field]: [...currentArray, value] };
+        }
+      } else {
+        // Remove if present
+        return {
+          ...prev,
+          [field]: currentArray.filter((item) => item !== value),
+        };
+      }
+      return prev;
+    });
+  };
+
   const handleInputChange = (field: string, value: any) => {
+    // Special handling for class field to auto-format
+    if (field === "class" && typeof value === "string") {
+      value = formatClassName(value);
+    }
+
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  // Validation function
+  const validateCurrentSection = () => {
+    const currentFields = sections[currentSection].fields;
+    
+    for (const field of currentFields) {
+      const question = questions[field as keyof typeof questions] as any;
+      
+      // Check required fields
+      if (question?.required) {
+        const value = formData[field as keyof FormData];
+        
+        if (field === "favorite_platform" && Array.isArray(value)) {
+          if (value.length === 0) {
+            alert(`Field "${question.label}" wajib diisi!`);
+            return false;
+          }
+        } else if (!value || (typeof value === 'string' && value.trim() === '')) {
+          alert(`Field "${question.label}" wajib diisi!`);
+          return false;
+        } else if (value === null) {
+          alert(`Field "${question.label}" wajib diisi!`);
+          return false;
+        }
+      }
+    }
+    
+    return true;
+  };
+
   const nextSection = () => {
+    if (!validateCurrentSection()) {
+      return;
+    }
+    
     if (currentSection < sections.length - 1) {
       setCurrentSection(currentSection + 1);
     } else {
@@ -269,21 +361,31 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
 
     setSubmitting(true);
     try {
+      // Convert favorite_platform array to comma-separated string for database
+      const submitData = {
+        ...formData,
+        favorite_platform: formData.favorite_platform.join(", "), // Convert array to string
+        type,
+        ip_hash: await generateIPHash(),
+      };
+
       const response = await fetch("/api/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          type,
-          ip_hash: await generateIPHash(),
-        }),
+        body: JSON.stringify(submitData),
       });
+
+      const result = await response.json();
 
       if (response.ok) {
         setSubmitted(true);
+      } else {
+        console.error("Submit error:", result);
+        alert(`Error: ${result.error || "Failed to submit form"}`);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
+      alert("Terjadi kesalahan saat mengirim form. Silakan coba lagi.");
     } finally {
       setSubmitting(false);
     }
@@ -441,6 +543,7 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
                 <div key={field}>
                   <label className="block text-sm font-medium text-gray-700 mb-3">
                     {question.label}
+                    {(question as any).required && <span className="text-red-500 ml-1">*</span>}
                   </label>
 
                   {question.type === "text" && (
@@ -466,6 +569,39 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
                         </option>
                       ))}
                     </select>
+                  )}
+
+                  {question.type === "checkbox" && (
+                    <div className="space-y-3">
+                      <p className="text-sm text-gray-600 mb-3">
+                        Pilih semua yang sesuai:
+                      </p>
+                      {(question as any).options?.map((option: any) => (
+                        <label
+                          key={option.value}
+                          className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
+                        >
+                          <input
+                            type="checkbox"
+                            value={option.value}
+                            checked={
+                              (
+                                formData[field as keyof FormData] as string[]
+                              )?.includes(option.value) || false
+                            }
+                            onChange={(e) =>
+                              handleCheckboxChange(
+                                field,
+                                option.value,
+                                e.target.checked
+                              )
+                            }
+                            className="text-blue-600 focus:ring-blue-500 mr-3"
+                          />
+                          <span className="text-gray-700">{option.label}</span>
+                        </label>
+                      ))}
+                    </div>
                   )}
 
                   {(question.type === "radio" ||
@@ -524,9 +660,14 @@ const ResearchForm: React.FC<{ type: "pre" | "post" }> = ({ type }) => {
         </div>
 
         {/* Footer */}
-        <div className="mt-8 text-center text-xs text-gray-500">
-          Data dikumpulkan hanya untuk keperluan penelitian akademik. Jika ingin
-          menghapus data Anda, hubungi guru@sman1katapang.sch.id
+        <div className="mt-8 text-center space-y-2">
+          <p className="text-sm text-red-600 font-medium">
+            <span className="text-red-500">*</span> Semua field wajib diisi sebelum bisa melanjutkan
+          </p>
+          <div className="text-xs text-gray-500">
+            Data dikumpulkan hanya untuk keperluan penelitian akademik. Jika ingin
+            menghapus data Anda, hubungi guru@sman1katapang.sch.id
+          </div>
         </div>
       </div>
     </div>

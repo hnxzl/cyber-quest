@@ -55,9 +55,33 @@ const MyResearchDashboard: React.FC = () => {
       if (response.ok) {
         const data = await response.json();
         setStats(data);
+      } else {
+        console.error(
+          "Failed to fetch stats:",
+          response.status,
+          response.statusText
+        );
+        // Set empty stats to prevent errors
+        setStats({
+          total: 0,
+          preTest: 0,
+          postTest: 0,
+          byClass: {},
+          correctAnswers: {},
+          recentSubmissions: [],
+        });
       }
     } catch (error) {
       console.error("Error fetching stats:", error);
+      // Set empty stats to prevent errors
+      setStats({
+        total: 0,
+        preTest: 0,
+        postTest: 0,
+        byClass: {},
+        correctAnswers: {},
+        recentSubmissions: [],
+      });
     }
     setLoading(false);
   };

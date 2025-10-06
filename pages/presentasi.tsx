@@ -5,7 +5,46 @@ const PresentasiPage: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedThreat, setSelectedThreat] = useState<string | null>(null);
   const [selectedTip, setSelectedTip] = useState<string | null>(null);
+  const [expandedCard, setExpandedCard] = useState<string | null>(null);
+  const [passwordTest, setPasswordTest] = useState("");
+  const [passwordScore, setPasswordScore] = useState(0);
+  const [passwordFeedback, setPasswordFeedback] = useState("");
   const router = useRouter();
+
+  // Fungsi evaluasi kekuatan password
+  const evaluatePassword = (password: string) => {
+    let score = 0;
+    let feedback = [];
+
+    if (password.length >= 8) score += 20;
+    else feedback.push("Minimal 8 karakter");
+
+    if (/[A-Z]/.test(password)) score += 20;
+    else feedback.push("Tambahkan huruf besar");
+
+    if (/[a-z]/.test(password)) score += 20;
+    else feedback.push("Tambahkan huruf kecil");
+
+    if (/[0-9]/.test(password)) score += 20;
+    else feedback.push("Tambahkan angka");
+
+    if (/[^A-Za-z0-9]/.test(password)) score += 20;
+    else feedback.push("Tambahkan simbol (!@#$%)");
+
+    setPasswordScore(score);
+
+    if (score === 100) {
+      setPasswordFeedback("💪 Password KUAT! Siap jadi cyber hero!");
+    } else if (score >= 80) {
+      setPasswordFeedback("👍 Hampir sempurna! " + feedback.join(", "));
+    } else if (score >= 60) {
+      setPasswordFeedback(
+        "⚠️ Cukup baik, tapi bisa lebih kuat: " + feedback.join(", ")
+      );
+    } else {
+      setPasswordFeedback("❌ Masih lemah! " + feedback.join(", "));
+    }
+  };
 
   // Data detail untuk ancaman digital
   const threatDetails = {
@@ -137,11 +176,13 @@ const PresentasiPage: React.FC = () => {
             Implementasi FSM dalam Game Edukatif Android untuk Meningkatkan
             Kesadaran Keamanan Digital Siswa SMA
           </h2>
-          <div className="bg-blue-50 rounded-2xl p-6 max-w-2xl mx-auto border border-blue-200">
-            <p className="text-blue-800 font-semibold text-lg">
+          <div className="bg-gradient-to-br from-yellow-100 via-orange-100 to-red-100 rounded-2xl p-6 max-w-2xl mx-auto border-4 border-yellow-400" style={{
+            boxShadow: '0 8px 16px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)'
+          }}>
+            <p className="text-orange-800 font-semibold text-lg">
               📚 Ezra — Alumni SMAN 1 Katapang
             </p>
-            <p className="text-blue-600">💻 Mahasiswa Informatika</p>
+            <p className="text-orange-700">💻 Mahasiswa Informatika</p>
           </div>
         </div>
       ),
@@ -168,7 +209,9 @@ const PresentasiPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="bg-blue-50 rounded-2xl p-8 border border-blue-200">
+            <div className="bg-gradient-to-br from-blue-100 via-cyan-100 to-teal-100 rounded-2xl p-8 border-4 border-blue-400" style={{
+              boxShadow: '0 8px 16px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)'
+            }}>
               <div className="text-4xl mb-4">📊</div>
               <h3 className="text-xl font-bold text-blue-700 mb-4">
                 Data Indonesia
@@ -181,8 +224,10 @@ const PresentasiPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-yellow-50 rounded-2xl p-6 max-w-3xl mx-auto border border-yellow-200">
-            <p className="text-yellow-800 text-lg font-semibold">
+          <div className="bg-gradient-to-br from-yellow-100 via-amber-100 to-orange-100 rounded-2xl p-6 max-w-3xl mx-auto border-4 border-yellow-400" style={{
+            boxShadow: '0 8px 16px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)'
+          }}>
+            <p className="text-orange-800 text-lg font-semibold">
               🎯 Makanya kita perlu belajar cara jaga diri di dunia digital!
             </p>
           </div>
@@ -201,7 +246,9 @@ const PresentasiPage: React.FC = () => {
 
           <div className="max-w-3xl mx-auto">
             <div className="grid gap-6">
-              <div className="bg-blue-50 rounded-xl p-6 border border-blue-200 flex items-center">
+              <div className="bg-gradient-to-br from-green-100 via-emerald-100 to-teal-100 rounded-xl p-6 border-4 border-green-400 flex items-center" style={{
+                boxShadow: '0 6px 12px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)'
+              }}>
                 <div className="text-3xl mr-4">1️⃣</div>
                 <div className="text-left">
                   <h3 className="text-xl font-bold text-blue-700">
@@ -213,7 +260,9 @@ const PresentasiPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-green-50 rounded-xl p-6 border border-green-200 flex items-center">
+              <div className="bg-gradient-to-br from-green-100 via-teal-100 to-cyan-100 rounded-xl p-6 border-4 border-green-400 flex items-center" style={{
+                boxShadow: '0 6px 12px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)'
+              }}>
                 <div className="text-3xl mr-4">2️⃣</div>
                 <div className="text-left">
                   <h3 className="text-xl font-bold text-green-700">
@@ -237,10 +286,12 @@ const PresentasiPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-orange-50 rounded-xl p-6 border border-orange-200 flex items-center">
+              <div className="bg-gradient-to-br from-orange-100 via-red-100 to-pink-100 rounded-xl p-6 border-4 border-orange-400 flex items-center" style={{
+                boxShadow: '0 6px 12px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)'
+              }}>
                 <div className="text-3xl mr-4">4️⃣</div>
                 <div className="text-left">
-                  <h3 className="text-xl font-bold text-orange-700">
+                  <h3 className="text-xl font-bold text-red-700">
                     Pre-Test
                   </h3>
                   <p className="text-orange-600">
@@ -540,7 +591,13 @@ const PresentasiPage: React.FC = () => {
               </h3>
 
               {/* Mock WhatsApp Message */}
-              <div className="bg-white rounded-xl p-6 shadow-lg max-w-md mx-auto border">
+              <div
+                className="bg-gradient-to-br from-yellow-100 via-green-100 to-blue-100 rounded-xl p-6 shadow-lg max-w-md mx-auto border-4 border-yellow-400"
+                style={{
+                  boxShadow:
+                    "0 8px 16px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.3)",
+                }}
+              >
                 <div className="flex items-center mb-4">
                   <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">
                     ?
@@ -551,7 +608,13 @@ const PresentasiPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="bg-gray-100 rounded-lg p-4 mb-3">
+                <div
+                  className="bg-gradient-to-br from-yellow-200 via-orange-200 to-red-200 rounded-lg p-4 mb-3 border-4 border-yellow-400"
+                  style={{
+                    boxShadow:
+                      "0 6px 12px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)",
+                  }}
+                >
                   <p className="text-sm">
                     🎉 SELAMAT! Anda terpilih sebagai pemenang GRAND PRIZE
                     senilai <strong>Rp 10.000.000</strong>!
@@ -603,18 +666,26 @@ const PresentasiPage: React.FC = () => {
       title: "Social Engineering",
       content: (
         <div className="text-center space-y-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-blue-600 mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 bg-clip-text text-transparent mb-8">
             Social Engineering 🕵️
           </h1>
 
           <div className="max-w-4xl mx-auto">
-            <div className="bg-orange-50 rounded-2xl p-8 border border-orange-200 mb-8">
+            <div className="bg-gradient-to-br from-orange-100 via-yellow-100 to-red-100 rounded-2xl p-8 border-4 border-orange-400 mb-8" style={{
+              boxShadow: '0 8px 16px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)'
+            }}>
               <h3 className="text-2xl font-bold text-orange-700 mb-6">
                 📞 Roleplay Contoh
               </h3>
 
               {/* Mock Phone Call */}
-              <div className="bg-white rounded-xl p-6 shadow-lg border">
+              <div
+                className="bg-gradient-to-br from-green-100 via-yellow-100 to-orange-100 rounded-xl p-6 shadow-lg border-4 border-green-400"
+                style={{
+                  boxShadow:
+                    "0 8px 16px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.3)",
+                }}
+              >
                 <div className="flex items-center mb-6">
                   <div className="text-4xl mr-4">📱</div>
                   <div>
@@ -632,7 +703,13 @@ const PresentasiPage: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="bg-gray-100 rounded-lg p-4">
+                  <div
+                    className="bg-gradient-to-br from-green-200 via-blue-200 to-cyan-200 rounded-lg p-4 border-4 border-green-400"
+                    style={{
+                      boxShadow:
+                        "0 6px 12px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)",
+                    }}
+                  >
                     <p className="font-semibold text-gray-700">🤔 Siswa:</p>
                     <p className="text-gray-600 italic">
                       "Eh kok aneh ya? Masa sekolah minta OTP WhatsApp..."
@@ -681,12 +758,20 @@ const PresentasiPage: React.FC = () => {
           </h1>
 
           <div className="max-w-4xl mx-auto">
-            <div className="bg-yellow-50 rounded-2xl p-8 border border-yellow-200 mb-8">
+            <div className="bg-gradient-to-br from-yellow-100 via-amber-100 to-orange-100 rounded-2xl p-8 border-4 border-yellow-400 mb-8" style={{
+              boxShadow: '0 8px 16px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)'
+            }}>
               <h3 className="text-2xl font-bold text-yellow-700 mb-6">
                 🧮 Hitungan Matematis
               </h3>
 
-              <div className="bg-white rounded-xl p-6 shadow-lg border mb-6">
+              <div
+                className="bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 rounded-xl p-6 shadow-lg border-4 border-blue-400 mb-6"
+                style={{
+                  boxShadow:
+                    "0 8px 16px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.3)",
+                }}
+              >
                 <div className="text-left space-y-4">
                   <div className="flex items-center justify-between bg-blue-50 p-4 rounded-lg">
                     <span className="font-semibold text-blue-700">
@@ -763,7 +848,9 @@ const PresentasiPage: React.FC = () => {
           </h1>
 
           <div className="max-w-5xl mx-auto">
-            <div className="bg-blue-50 rounded-2xl p-6 border border-blue-200 mb-6">
+            <div className="bg-gradient-to-br from-cyan-100 via-blue-100 to-indigo-100 rounded-2xl p-6 border-4 border-cyan-400 mb-6" style={{
+              boxShadow: '0 8px 16px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)'
+            }}>
               <p className="text-blue-700 text-lg">
                 💻 Mari kita lihat langsung seberapa aman password yang biasa
                 kita gunakan!
@@ -772,8 +859,12 @@ const PresentasiPage: React.FC = () => {
 
             {/* Iframe for password demo */}
             <div
-              className="bg-white rounded-2xl shadow-lg border overflow-hidden"
-              style={{ height: "500px" }}
+              className="bg-gradient-to-br from-cyan-100 via-teal-100 to-emerald-100 rounded-2xl shadow-lg border-4 border-cyan-400 overflow-hidden"
+              style={{
+                height: "700px",
+                boxShadow:
+                  "0 12px 24px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.4)",
+              }}
             >
               <iframe
                 src="/password_demo.html"
@@ -814,33 +905,71 @@ const PresentasiPage: React.FC = () => {
           </h1>
 
           <div className="max-w-4xl mx-auto">
-            <div className="bg-blue-50 rounded-2xl p-8 border border-blue-200 mb-8">
-              <h3 className="text-2xl font-bold text-blue-700 mb-6">
+            <div className="bg-gradient-to-br from-purple-100 via-indigo-100 to-blue-100 rounded-2xl p-8 border-4 border-purple-400 mb-8" style={{
+              boxShadow: '0 8px 16px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)'
+            }}>
+              <h3 className="text-2xl font-bold text-purple-700 mb-6">
                 📐 Formula Matematis
               </h3>
 
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-white rounded-xl p-6 shadow-lg border">
+                <div
+                  className="bg-gradient-to-br from-red-100 via-orange-100 to-yellow-100 rounded-xl p-6 shadow-lg border-4 border-red-400"
+                  style={{
+                    boxShadow:
+                      "0 8px 16px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.3)",
+                  }}
+                >
                   <h4 className="text-lg font-bold text-gray-700 mb-4">
                     Rumus Dasar:
                   </h4>
                   <div className="space-y-3 text-left">
-                    <div className="bg-gray-50 p-3 rounded font-mono text-sm">
+                    <div
+                      className="bg-gradient-to-r from-yellow-100 to-orange-100 p-3 rounded-lg border-2 border-yellow-300 font-mono text-sm"
+                      style={{
+                        boxShadow:
+                          "0 4px 8px rgba(0,0,0,0.1), inset 0 1px 2px rgba(255,255,255,0.4)",
+                      }}
+                    >
                       <strong>N</strong> = jumlah kombinasi
                     </div>
-                    <div className="bg-gray-50 p-3 rounded font-mono text-sm">
+                    <div
+                      className="bg-gradient-to-r from-red-100 to-pink-100 p-3 rounded-lg border-2 border-red-300 font-mono text-sm"
+                      style={{
+                        boxShadow:
+                          "0 4px 8px rgba(0,0,0,0.1), inset 0 1px 2px rgba(255,255,255,0.4)",
+                      }}
+                    >
                       <strong>T_worst</strong> = N / R
                     </div>
-                    <div className="bg-gray-50 p-3 rounded font-mono text-sm">
+                    <div
+                      className="bg-gradient-to-r from-blue-100 to-cyan-100 p-3 rounded-lg border-2 border-blue-300 font-mono text-sm"
+                      style={{
+                        boxShadow:
+                          "0 4px 8px rgba(0,0,0,0.1), inset 0 1px 2px rgba(255,255,255,0.4)",
+                      }}
+                    >
                       <strong>T_avg</strong> ≈ N / (2R)
                     </div>
-                    <div className="bg-gray-50 p-3 rounded font-mono text-sm">
+                    <div
+                      className="bg-gradient-to-r from-green-100 to-emerald-100 p-3 rounded-lg border-2 border-green-300 font-mono text-sm"
+                      style={{
+                        boxShadow:
+                          "0 4px 8px rgba(0,0,0,0.1), inset 0 1px 2px rgba(255,255,255,0.4)",
+                      }}
+                    >
                       <strong>log₂(N)</strong> = entropi (bit)
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl p-6 shadow-lg border">
+                <div
+                  className="bg-gradient-to-br from-purple-100 via-indigo-100 to-blue-100 rounded-xl p-6 shadow-lg border-4 border-purple-400"
+                  style={{
+                    boxShadow:
+                      "0 8px 16px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.3)",
+                  }}
+                >
                   <h4 className="text-lg font-bold text-gray-700 mb-4">
                     Keterangan:
                   </h4>
@@ -1213,17 +1342,35 @@ const PresentasiPage: React.FC = () => {
               </p>
 
               <div className="grid md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-white rounded-xl p-4 border border-blue-300">
+                <div
+                  className="bg-gradient-to-br from-green-100 to-emerald-200 rounded-xl p-4 border-4 border-green-400"
+                  style={{
+                    boxShadow:
+                      "0 6px 12px rgba(0,0,0,0.15), inset 0 1px 3px rgba(255,255,255,0.3)",
+                  }}
+                >
                   <div className="text-3xl mb-2">⏱️</div>
                   <p className="font-semibold text-blue-700">5-7 Menit</p>
                   <p className="text-blue-600 text-sm">Cepat & mudah</p>
                 </div>
-                <div className="bg-white rounded-xl p-4 border border-blue-300">
+                <div
+                  className="bg-gradient-to-br from-blue-100 to-cyan-200 rounded-xl p-4 border-4 border-blue-400"
+                  style={{
+                    boxShadow:
+                      "0 6px 12px rgba(0,0,0,0.15), inset 0 1px 3px rgba(255,255,255,0.3)",
+                  }}
+                >
                   <div className="text-3xl mb-2">📱</div>
                   <p className="font-semibold text-blue-700">Mobile Friendly</p>
                   <p className="text-blue-600 text-sm">Bisa pakai HP</p>
                 </div>
-                <div className="bg-white rounded-xl p-4 border border-blue-300">
+                <div
+                  className="bg-gradient-to-br from-yellow-100 to-orange-200 rounded-xl p-4 border-4 border-yellow-400"
+                  style={{
+                    boxShadow:
+                      "0 6px 12px rgba(0,0,0,0.15), inset 0 1px 3px rgba(255,255,255,0.3)",
+                  }}
+                >
                   <div className="text-3xl mb-2">🔒</div>
                   <p className="font-semibold text-blue-700">Data Aman</p>
                   <p className="text-blue-600 text-sm">Privasi terjaga</p>
@@ -1232,14 +1379,26 @@ const PresentasiPage: React.FC = () => {
             </div>
 
             {/* QR Code Section */}
-            <div className="bg-white rounded-2xl shadow-lg border p-8">
+            <div
+              className="bg-gradient-to-br from-pink-100 via-rose-100 to-red-100 rounded-2xl shadow-lg border-4 border-pink-400 p-8"
+              style={{
+                boxShadow:
+                  "0 12px 24px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.4)",
+              }}
+            >
               <h4 className="text-xl font-bold text-gray-700 mb-6">
                 📱 Scan QR atau Klik Tombol
               </h4>
 
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div className="text-center">
-                  <div className="bg-gray-100 w-48 h-48 mx-auto rounded-xl flex items-center justify-center border-2 border-dashed border-gray-300">
+                  <div
+                    className="bg-gradient-to-br from-yellow-100 via-orange-100 to-red-100 w-48 h-48 mx-auto rounded-xl flex items-center justify-center border-4 border-dashed border-yellow-400"
+                    style={{
+                      boxShadow:
+                        "0 8px 16px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)",
+                    }}
+                  >
                     <div className="text-center">
                       <div className="text-4xl mb-2">📱</div>
                       <p className="text-gray-600 text-sm">
@@ -1257,7 +1416,11 @@ const PresentasiPage: React.FC = () => {
                 <div className="text-center">
                   <button
                     onClick={() => router.push("/form/pre")}
-                    className="bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold py-6 px-12 rounded-2xl shadow-xl transition-all transform hover:scale-105 text-xl"
+                    className="bg-gradient-to-r from-green-500 via-yellow-500 to-orange-500 hover:from-green-600 hover:via-yellow-600 hover:to-orange-600 text-white font-bold py-6 px-12 rounded-2xl transition-all transform hover:scale-105 text-xl border-4 border-yellow-600"
+                    style={{
+                      boxShadow: "0 8px 0 #d97706, 0 12px 25px rgba(0,0,0,0.3)",
+                      textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
+                    }}
                   >
                     <span className="text-2xl mr-3">🚀</span>
                     Mulai Pre-Test Sekarang!
@@ -1265,7 +1428,13 @@ const PresentasiPage: React.FC = () => {
 
                   <p className="text-gray-600 text-sm mt-4">
                     Atau buka: <br />
-                    <code className="bg-gray-100 px-2 py-1 rounded text-xs">
+                    <code
+                      className="bg-gradient-to-r from-blue-100 to-cyan-100 px-3 py-2 rounded-lg border-2 border-blue-300 text-sm font-mono"
+                      style={{
+                        boxShadow:
+                          "0 4px 8px rgba(0,0,0,0.1), inset 0 1px 2px rgba(255,255,255,0.4)",
+                      }}
+                    >
                       {typeof window !== "undefined"
                         ? window.location.origin
                         : ""}
@@ -1326,110 +1495,437 @@ const PresentasiPage: React.FC = () => {
   }, [currentSlide]);
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation Header */}
-      <div className="bg-blue-600 text-white p-4 shadow-lg">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <div className="min-h-screen bg-gradient-to-b from-blue-400 via-cyan-300 to-green-400 relative mario-world-bg">
+      {/* Mario World Style Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Clouds */}
+        <div className="absolute top-8 left-8 text-4xl animate-float opacity-90">
+          ☁️
+        </div>
+        <div
+          className="absolute top-12 right-20 text-3xl animate-float opacity-80"
+          style={{ animationDelay: "1s" }}
+        >
+          ☁️
+        </div>
+        <div
+          className="absolute top-20 left-1/3 text-2xl animate-float opacity-70"
+          style={{ animationDelay: "2s" }}
+        >
+          ☁️
+        </div>
+        <div
+          className="absolute top-16 right-1/3 text-3xl animate-float opacity-60"
+          style={{ animationDelay: "0.5s" }}
+        >
+          ☁️
+        </div>
+
+        {/* Mario Elements */}
+        <div
+          className="absolute top-1/4 left-20 text-3xl animate-bounce opacity-80"
+          style={{ animationDelay: "0.3s" }}
+        >
+          🍄
+        </div>
+        <div
+          className="absolute bottom-40 right-32 text-2xl animate-bounce opacity-70"
+          style={{ animationDelay: "1.2s" }}
+        >
+          ⭐
+        </div>
+        <div
+          className="absolute top-2/3 left-1/3 text-xl animate-bounce opacity-60"
+          style={{ animationDelay: "2.1s" }}
+        >
+          🪙
+        </div>
+        <div
+          className="absolute top-20 right-1/2 text-2xl animate-bounce opacity-65"
+          style={{ animationDelay: "0.8s" }}
+        >
+          ❓
+        </div>
+        <div
+          className="absolute bottom-32 left-1/2 text-xl animate-bounce opacity-75"
+          style={{ animationDelay: "1.5s" }}
+        >
+          🏰
+        </div>
+
+        {/* Mario Blocks */}
+        <div
+          className="absolute top-32 left-1/2 w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 border-2 border-yellow-600 rounded animate-float opacity-90"
+          style={{ animationDelay: "0.7s" }}
+        ></div>
+        <div
+          className="absolute bottom-60 right-1/4 w-6 h-6 bg-gradient-to-br from-red-500 to-red-700 border-2 border-red-800 rounded animate-float opacity-85"
+          style={{ animationDelay: "1.8s" }}
+        ></div>
+      </div>
+
+      {/* Mario World Navigation Header */}
+      <div
+        className="bg-gradient-to-r from-green-600 via-yellow-500 to-red-500 text-white px-6 py-4 shadow-2xl relative z-10 border-b-8 border-yellow-400"
+        style={{
+          background:
+            "linear-gradient(45deg, #22c55e 0%, #facc15 25%, #ef4444 50%, #8b5cf6 75%, #06b6d4 100%)",
+          borderBottom: "8px ridge #fbbf24",
+        }}
+      >
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-4">
             <button
               onClick={() => router.push("/")}
-              className="bg-blue-500 hover:bg-blue-400 px-4 py-2 rounded-lg transition-colors flex items-center"
+              className="mario-button px-6 py-2 rounded-lg text-lg flex items-center"
             >
-              <span className="mr-2">🏠</span>
-              Home
+              � Home
             </button>
             <div>
-              <h1 className="text-xl font-bold">
-                🔐 Presentasi Keamanan Digital
+              <h1 className="text-xl font-bold drop-shadow-lg">
+                �️ Cyber Security Quest
               </h1>
-              <p className="text-blue-200 text-sm">
-                Slide {currentSlide + 1} dari {slides.length}:{" "}
+              <p className="text-white/90 text-sm font-medium">
+                Level {currentSlide + 1}/{slides.length}:{" "}
                 {slides[currentSlide].title}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             <button
-              onClick={prevSlide}
+              onClick={() => setCurrentSlide(Math.max(0, currentSlide - 1))}
               disabled={currentSlide === 0}
-              className="bg-blue-500 hover:bg-blue-400 disabled:bg-blue-700 disabled:opacity-50 px-4 py-2 rounded-lg transition-colors"
+              className="mario-button disabled:opacity-50 disabled:transform-none px-6 py-3 rounded-lg text-lg"
             >
-              ← Prev
+              ⬅️ Prev
             </button>
-            <span className="text-blue-200 text-sm px-3">
-              {currentSlide + 1}/{slides.length}
-            </span>
-            <button
-              onClick={nextSlide}
-              disabled={currentSlide === slides.length - 1}
-              className="bg-blue-500 hover:bg-blue-400 disabled:bg-blue-700 disabled:opacity-50 px-4 py-2 rounded-lg transition-colors"
+            <div
+              className="bg-gradient-to-r from-yellow-400 to-orange-400 text-red-800 px-4 py-2 rounded-lg font-bold text-lg shadow-inner border-4 border-yellow-600"
+              style={{
+                textShadow: "1px 1px 0px rgba(255,255,255,0.5)",
+              }}
             >
-              Next →
+              {currentSlide + 1}/{slides.length}
+            </div>
+            <button
+              onClick={() =>
+                setCurrentSlide(Math.min(slides.length - 1, currentSlide + 1))
+              }
+              disabled={currentSlide === slides.length - 1}
+              className="mario-button disabled:opacity-50 disabled:transform-none px-6 py-3 rounded-lg text-lg"
+            >
+              Next ➡️
+            </button>
+            <button
+              onClick={() => window.open("/surprise", "_blank")}
+              className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-3 rounded-lg font-bold shadow-lg hover:scale-105 transition-all animate-pulse border-4 border-red-700 text-lg"
+              style={{
+                boxShadow: "0 6px 0 #7f1d1d, 0 8px 15px rgba(0,0,0,0.3)",
+                textShadow: "1px 1px 2px rgba(0,0,0,0.5)",
+              }}
+            >
+              🎁 Bonus Hadiah
             </button>
           </div>
         </div>
       </div>
 
-      {/* Slide Content */}
-      <div className="flex-1 p-8">
-        <div className="max-w-7xl mx-auto">
+      {/* Main Content Area - Full Scrollable Mario Style */}
+      <div className="pb-8 px-4 relative">
+        <div className="relative z-10 max-w-6xl mx-auto">
           <div
-            className="slide-content min-h-[80vh] flex items-center justify-center"
+            className="mario-content-box rounded-3xl shadow-2xl overflow-hidden"
             style={{
-              animation: "slideIn 0.3s ease-in-out",
+              background:
+                "linear-gradient(135deg, rgba(240,230,140,0.95) 0%, rgba(152,251,152,0.95) 30%, rgba(135,206,235,0.95) 70%, rgba(221,160,221,0.95) 100%)",
+              border: "8px ridge #8B4513",
+              boxShadow:
+                "0 0 0 4px #D2691E, 0 25px 50px -12px rgba(0, 0, 0, 0.4)",
             }}
           >
-            {slides[currentSlide].content}
+            <div className="p-8 relative">
+              {/* Mario Block Pattern Overlay */}
+              <div className="absolute top-0 left-0 right-0 bottom-0 opacity-5 pointer-events-none">
+                <div className="grid grid-cols-16 gap-1">
+                  {Array.from({ length: 200 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className={`w-full h-6 rounded-sm ${
+                        i % 5 === 0
+                          ? "bg-yellow-600"
+                          : i % 7 === 0
+                          ? "bg-red-600"
+                          : i % 3 === 0
+                          ? "bg-green-700"
+                          : "bg-blue-600"
+                      }`}
+                    ></div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Slide Content */}
+              <div
+                className="w-full relative z-10"
+                style={{
+                  animation:
+                    "slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+                }}
+              >
+                {slides[currentSlide].content}
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Slide Indicator */}
-      <div className="bg-gray-100 border-t p-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-center space-x-2 mb-4">
+      {/* Mario World Slide Indicator */}
+      <div
+        className="bg-gradient-to-r from-green-600 via-yellow-500 to-red-500 border-t-8 border-yellow-400 p-4 relative z-10"
+        style={{
+          background:
+            "linear-gradient(90deg, #16a34a 0%, #facc15 25%, #ef4444 50%, #8b5cf6 75%, #059669 100%)",
+          borderTop: "8px ridge #fbbf24",
+        }}
+      >
+        <div className="max-w-6xl mx-auto">
+          <div className="flex justify-center space-x-4 mb-3">
             {slides.map((_, index) => (
               <button
                 key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all ${
+                onClick={() => setCurrentSlide(index)}
+                className={`relative transition-all duration-300 ${
                   index === currentSlide
-                    ? "bg-blue-600 scale-125"
-                    : "bg-gray-300 hover:bg-gray-400"
+                    ? "transform scale-150 animate-bounce"
+                    : "hover:scale-125"
                 }`}
-              />
+              >
+                <div
+                  className={`w-10 h-10 rounded-lg shadow-lg transition-all border-2 ${
+                    index === currentSlide
+                      ? "bg-gradient-to-br from-yellow-400 to-orange-500 border-yellow-600 shadow-yellow-300"
+                      : "bg-gradient-to-br from-gray-400 to-gray-600 border-gray-500 hover:from-blue-400 hover:to-blue-600 hover:border-blue-500"
+                  }`}
+                  style={{
+                    boxShadow:
+                      index === currentSlide
+                        ? "0 4px 0 #d97706, 0 6px 15px rgba(251, 191, 36, 0.4)"
+                        : "0 2px 0 #374151, 0 4px 10px rgba(0,0,0,0.2)",
+                  }}
+                >
+                  <span className="text-lg flex items-center justify-center h-full">
+                    {index === currentSlide ? "⭐" : "🪙"}
+                  </span>
+                </div>
+              </button>
             ))}
           </div>
 
-          <div className="text-center text-gray-600 text-sm">
-            <p>💡 Gunakan tombol panah ← → atau spasi untuk navigasi</p>
-            <p>Tekan ESC untuk kembali ke home</p>
+          <div
+            className="text-center text-white text-sm font-bold"
+            style={{
+              textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
+            }}
+          >
+            <p>
+              🎮 Gunakan tombol panah ← → atau spasi untuk navigasi | Tekan ESC
+              untuk home | Klik 🪙 untuk lompat ke slide
+            </p>
           </div>
         </div>
       </div>
 
-      {/* CSS Animation */}
+      {/* Mario World CSS Styles */}
       <style jsx>{`
+        /* Mario World Authentic Animations */
+        .mario-world-bg {
+          background: linear-gradient(
+            180deg,
+            #60a5fa 0%,
+            /* Sky blue */ #38bdf8 30%,
+            /* Cyan */ #4ade80 70%,
+            /* Green */ #22c55e 100% /* Forest green */
+          );
+          position: relative;
+        }
+
+        .mario-world-bg::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: radial-gradient(
+              circle at 20% 20%,
+              rgba(255, 255, 255, 0.3) 1px,
+              transparent 1px
+            ),
+            radial-gradient(
+              circle at 80% 80%,
+              rgba(255, 255, 255, 0.2) 1px,
+              transparent 1px
+            ),
+            radial-gradient(
+              circle at 40% 40%,
+              rgba(255, 255, 255, 0.1) 1px,
+              transparent 1px
+            );
+          background-size: 50px 50px, 30px 30px, 70px 70px;
+          pointer-events: none;
+        }
+
         @keyframes slideIn {
           from {
             opacity: 0;
-            transform: translateX(20px);
+            transform: translateX(30px) scale(0.95);
           }
           to {
             opacity: 1;
-            transform: translateX(0);
+            transform: translateX(0) scale(1);
           }
         }
 
-        .slide-content {
-          animation: slideIn 0.3s ease-in-out;
+        @keyframes bounce {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-15px);
+          }
+        }
+
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0px) rotate(0deg);
+          }
+          33% {
+            transform: translateY(-10px) rotate(1deg);
+          }
+          66% {
+            transform: translateY(-5px) rotate(-1deg);
+          }
+        }
+
+        .animate-float {
+          animation: float 4s ease-in-out infinite;
+        }
+
+        /* Mario-style Content Box */
+        .mario-content-box {
+          position: relative;
+        }
+
+        .mario-content-box::before {
+          content: "";
+          position: absolute;
+          top: -4px;
+          left: -4px;
+          right: -4px;
+          bottom: -4px;
+          background: linear-gradient(
+            45deg,
+            #8b4513 0%,
+            #d2691e 25%,
+            #8b4513 50%,
+            #d2691e 75%,
+            #8b4513 100%
+          );
+          border-radius: 2rem;
+          z-index: -1;
+        }
+
+        /* Custom Mario Scrollbar */
+        .scrollbar-mario::-webkit-scrollbar {
+          width: 18px;
+        }
+
+        .scrollbar-mario::-webkit-scrollbar-track {
+          background: linear-gradient(180deg, #8b4513, #d2691e);
+          border-radius: 12px;
+          border: 3px ridge #654321;
+        }
+
+        .scrollbar-mario::-webkit-scrollbar-thumb {
+          background: linear-gradient(45deg, #ffd700, #ffa500, #ff8c00);
+          border-radius: 12px;
+          border: 3px ridge #b8860b;
+          box-shadow: inset 0 3px 6px rgba(255, 255, 255, 0.4),
+            0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .scrollbar-mario::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(45deg, #ffff00, #ffd700, #ffa500);
+          box-shadow: inset 0 3px 6px rgba(255, 255, 255, 0.6),
+            0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .scrollbar-mario::-webkit-scrollbar-corner {
+          background: #d2691e;
+        }
+
+        /* Better scroll behavior */
+        .scrollbar-mario {
+          scroll-behavior: smooth;
+          scrollbar-width: thick;
+          scrollbar-color: #ffd700 #8b4513;
+        }
+
+        /* Mario Buttons */
+        .mario-button {
+          background: linear-gradient(45deg, #facc15, #f59e0b);
+          border: 4px ridge #d97706;
+          color: #92400e;
+          font-weight: bold;
+          text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+          transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          box-shadow: 0 6px 0 #92400e, 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .mario-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 0 #92400e, 0 12px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .mario-button:active {
+          transform: translateY(4px);
+          box-shadow: 0 2px 0 #92400e, 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design - Natural Scroll */
+        .mario-content-box {
+          /* Remove height constraints for natural scrolling */
         }
 
         @media (max-width: 768px) {
-          .slide-content {
-            min-height: 70vh;
+          .mario-content-box {
+            border-width: 6px;
           }
+
+          .mario-world-bg div[class*="text-"] {
+            font-size: 0.9em;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .mario-content-box {
+            border-width: 4px;
+            margin: 0.25rem;
+          }
+        } /* Ensure full scroll capability */
+        html,
+        body {
+          scroll-behavior: smooth;
+        }
+
+        /* Mario-style focus effects */
+        button:focus,
+        .mario-button:focus {
+          outline: 4px solid #ffd700;
+          outline-offset: 2px;
         }
       `}</style>
     </div>

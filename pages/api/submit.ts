@@ -44,6 +44,8 @@ export default async function handler(
   }
 
   try {
+    console.log("Received form submission:", { type, studentClass, consent });
+
     // Generate server-side IP hash for better security
     const clientIP =
       req.headers["x-forwarded-for"] ||

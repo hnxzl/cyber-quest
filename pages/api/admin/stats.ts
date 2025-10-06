@@ -10,6 +10,7 @@ export default async function handler(
   }
 
   try {
+    console.log("Fetching submissions from Supabase...");
     // Get total counts
     const { data: submissions, error } = await supabase
       .from("submissions")
@@ -17,8 +18,11 @@ export default async function handler(
       .order("created_at", { ascending: false });
 
     if (error) {
+      console.error("Supabase error:", error);
       throw error;
     }
+
+    console.log(`Found ${submissions?.length || 0} submissions`);
 
     // Calculate stats
     const preSubmissions = submissions.filter((s) => s.type === "pre");
@@ -40,10 +44,12 @@ export default async function handler(
     }));
 
     res.status(200).json({
-      total_pre: preSubmissions.length,
-      total_post: postSubmissions.length,
-      by_class: byClass,
-      recent_submissions: recentSubmissions,
+      total: submissions.length,
+      preTest: preSubmissions.length,
+      postTest: postSubmissions.length,
+      byClass,
+      correctAnswers: {}, // Add empty object for now
+      recentSubmissions,
     });
   } catch (error) {
     console.error("Error fetching admin stats:", error);
